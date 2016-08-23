@@ -47,6 +47,10 @@
 							$(subIcon).addClass('glyphicon-minus');
 						});
 					};
+
+					if (displayIt && !!nextElem.hasClass('collapsed')) {
+						nextElem.removeClass('collapsed');
+					};
 				};
 				nextElem = nextElem.next();
 			}

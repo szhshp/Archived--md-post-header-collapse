@@ -12,6 +12,8 @@ a script to make header collapsible in markdown post
 
 Add JS and CSS to ur proj.
 
+Recommend to put after other js.
+
 ## Turning
 
 ### BreakId
@@ -24,11 +26,19 @@ Here is an exam to stop at an elem id= `thisIsTheBreakId` when you click the las
 	var arrBreakId =  new Array("thisIsTheBreakId");
 </pre>
 
+### IgnorePrefix
+
+If you don't want specific elems not to collapse, add some prefix for those elems and add ignorePrefix here
+
+<pre class="brush: js">
+	var arrExcludeTagPrefix = new Array("IDPrefix");
+</pre>
+
 ### Collapsible Header Level
 
 To set the level of header which need to be collapse
 
-It have been set to `H1`-`H3` by default.
+It have been set to `H1`-`H3` by default. Absolutely the header inside quote will be ignored.
 
 <pre class="brush: js">
 

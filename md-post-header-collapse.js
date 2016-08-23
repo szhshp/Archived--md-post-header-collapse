@@ -2,28 +2,28 @@
 	var arrCollapsableTag = new Array("H1","H2","H3");
 	var arrExcludeTagPrefix = new Array("sidebar-toc-Ik4D-");
 	// var excludeTagList = new Array(""); //TODO
-	$(':not(blockquote)>h1, :not(blockquote)>h2, :not(blockquote)>h3').each(function(index, el) {
-		if(index!=0)  $(el).prepend('<span class="glyphicon glyphicon-minus headerbtn" aria-hidden="true" title="click to clps and expd"></span>');
+	$(':not(blockquote)>h1, :not(blockquote)>h2, :not(blockquote)>h3').each(function(index, curHeader) {
+		if(index!=0)  $(curHeader).prepend('<span class="glyphicon glyphicon-minus headerbtn" aria-hidden="true" title="click to clps and expd"></span>');
 		/**
-		* [el: current header]
+		* [curHeader: current header]
 		* [this: current span icon]
 		*/
-		$(el).find('span.headerbtn.glyphicon').click(function(event) {
-			var tagNameLevel = arrCollapsableTag.indexOf($(el).prop("tagName")); 
-			if ($(el).hasClass('collapsed')) {
+		$(curHeader).find('span.headerbtn.glyphicon').click(function(event) {
+			var tagNameLevel = arrCollapsableTag.indexOf($(curHeader).prop("tagName")); 
+			if ($(curHeader).hasClass('collapsed')) {
 				/*if this header already collapsed*/
-				var displayStatus = true;
-				$(el).removeClass('collapsed');
+				var displayIt = true;
+				$(curHeader).removeClass('collapsed');
 				$(this).removeClass('glyphicon-plus');
 				$(this).addClass('glyphicon-minus');
 			}else{
-				var displayStatus = false;
-				$(el).addClass('collapsed');
+				var displayIt = false;
+				$(curHeader).addClass('collapsed');
 				$(this).removeClass('glyphicon-minus');
 				$(this).addClass('glyphicon-plus');
 			}
 
-			var nextElem = $(el).next();
+			var nextElem = $(curHeader).next();
 			var ignoreFlag;
 			while( 
 				arrBreakId.indexOf(nextElem.prop('id')) ==-1 
@@ -38,7 +38,15 @@
 					};
 				};
 				if (!ignoreFlag) {
-					displayStatus? nextElem.show(400):nextElem.hide(400);
+					displayIt? nextElem.show(400):nextElem.hide(400);
+
+					
+					if (displayIt && !!nextElem.find('span.headerbtn')) {
+						nextElem.find('span.headerbtn').each(function(index, subIcon) {
+							$(subIcon).removeClass('glyphicon-plus');
+							$(subIcon).addClass('glyphicon-minus');
+						});
+					};
 				};
 				nextElem = nextElem.next();
 			}

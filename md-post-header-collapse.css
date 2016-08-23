@@ -3,11 +3,11 @@ span.headerbtn.glyphicon:hover {
 }
 
 span.headerbtn.glyphicon {
-    font-size: 18px;
+    font-size: 60%;
     position: relative;
     margin-left: -25px;
     padding-right: 5px;
-    color: grey;
+    color: rgb(161, 161, 161);
     -webkit-transition: opacity 1s;
     transition: opacity 1s;
     opacity: 0;

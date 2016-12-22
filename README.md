@@ -1,7 +1,7 @@
 [TOC]
 
 # md-post-header-collapse
-a script to make header collapsible in markdown post
+A script to make header collapsible in markdown post
 
 ## Requirements
 
@@ -10,9 +10,18 @@ a script to make header collapsible in markdown post
 
 ## Installation 
 
-Add JS and CSS to ur proj.
+Add JS and CSS to your project.
 
-Recommend to put after other js.
+Recommend to put after other JS files.
+
+
+## Usage
+
+Mouseon the header you want to collapse/expand an icon will show.
+
+Click the icon to collapse/expand
+
+![test](example/example1.jpg)
 
 ## Turning
 

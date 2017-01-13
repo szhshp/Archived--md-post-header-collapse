@@ -14,7 +14,12 @@ Recommend to put after other JS files.
 
 ## Usage
 
-run `headerCollapsible()`
+	 $.headerCollapseRobot(
+	 	arr_Id_CollapseEnds =  new Array("end"),                       
+	 	arr_Collapsible_Tag = new Array("H1","H2","H3"),                       
+	 	arr_ExcludeElemPrefix_InCollapsible  = new Array("comment-"),      
+	 	arr_ExcludeElemPrefix_InCollapsing = new Array("sidebar-toc-Ik4D-")
+	 )
 
 Mouseon the header you want to collapse/expand an icon will show.
 
@@ -30,17 +35,15 @@ Sometimes the posts don't have specific ending tag. You can set `BreakId` to set
 
 Here is an exam to stop at an elem id= `thisIsTheBreakId` when you click the last header.
 
-<pre class="brush: js">
+
 	var arr_Id_CollapseEnds =  new Array("thisIsTheBreakId");
-</pre>
 
 ### Exclude Elem in Collapsing
 
 If you don't want specific elems to collapse, add some id prefix for those elems and add ignorePrefix here
 
-<pre class="brush: js">
+
 	var arr_ExcludeElemPrefix_InCollapsing = new Array("IDPrefix");
-</pre>
 
 ### Exclude Elem for Collapsible
 
@@ -52,17 +55,15 @@ To set the level of header which need to be collapse
 
 It have been set to `H1`-`H3` by default. Absolutely the header inside quote will be ignored.
 
-<pre class="brush: js">
+
 
 	var arr_Collapsible_Tag = new Array("H1","H2","H3");
 	// var excludeTagList = new Array("");
 	$('h1, h2, h3').each(function(index, el)……
 
-</pre>
 
 If wanna add `H4` you also need to add for CSS
 
-<pre class="brush: css">
 
 	h1:hover span.headerbtn,
 	h2:hover span.headerbtn, 
@@ -71,7 +72,6 @@ If wanna add `H4` you also need to add for CSS
 	    visibility: visible;
 	}
 
-</pre>
 
 ## Example
 

@@ -1,16 +1,28 @@
-var arrBreakId =  new Array("uyan_frame");
-var arrCollapsableTag = new Array("H1","H2","H3");
-var arrExcludeTagPrefix = new Array("sidebar-toc-Ik4D-");
+var arr_Id_CollapseEnds =  new Array("commentBox");						// when click the final collapse icon, elements after that header will be collapsed until mentioned in this array
+var arr_Collapsible_Tag = new Array("H1","H2","H3");						// set the level of collapsible tags, uppercase
+var arr_ExcludeElemPrefix_InCollapsible  = new Array("comment-");		// The header elements which you do not want to enable 
+var arr_ExcludeElemPrefix_InCollapsing = new Array("sidebar-toc-Ik4D-");	// The elements which will not be collapsed when click the icons
 // var excludeTagList = new Array(""); //TODO
-function headerCollapsible() {
+
+function headerCollapsible () {
 	$(':not(blockquote)>h1, :not(blockquote)>h2, :not(blockquote)>h3').each(function(index, curHeader) {
-		if(index!=0)  $(curHeader).prepend('<span class="glyphicon glyphicon-minus headerbtn" aria-hidden="true"></span>');
+		if(index!=0)  {
+			ignoreFlag = false;
+			for (var i = 0; i < arr_ExcludeElemPrefix_InCollapsible .length; i++) {
+				if ($(curHeader).prop('id').indexOf(arr_ExcludeElemPrefix_InCollapsible [i])==0) {
+					ignoreFlag = true;
+					break;
+				};
+			};
+			if (!ignoreFlag)
+				$(curHeader).prepend('<span class="glyphicon glyphicon-minus headerbtn" aria-hidden="true"></span>');
+		}
 		/**
 		* [curHeader: current header]
 		* [this: current span icon]
 		*/
 		$(curHeader).find('span.headerbtn.glyphicon').click(function(event) {
-			var tagNameLevel = arrCollapsableTag.indexOf($(curHeader).prop("tagName")); 
+			var tagNameLevel = arr_Collapsible_Tag.indexOf($(curHeader).prop("tagName")); 
 			if ($(curHeader).hasClass('collapsed')) {
 				/*if this header already collapsed*/
 				var displayIt = true;
@@ -27,19 +39,20 @@ function headerCollapsible() {
 			var nextElem = $(curHeader).next();
 			var ignoreFlag;
 			while( 
-				arrBreakId.indexOf(nextElem.prop('id')) ==-1 
-				&& (arrCollapsableTag.indexOf(nextElem.prop("tagName")) == -1 || arrCollapsableTag.indexOf(nextElem.prop("tagName")) > tagNameLevel)
+				arr_Id_CollapseEnds.indexOf(nextElem.prop('id')) ==-1 
+				&& (arr_Collapsible_Tag.indexOf(nextElem.prop("tagName")) == -1 || arr_Collapsible_Tag.indexOf(nextElem.prop("tagName")) > tagNameLevel)
 				 ){
 				ignoreFlag = false;
-				// console.log(nextElem);
-				for (var i = 0; i < arrExcludeTagPrefix.length; i++) {
-					if (nextElem.prop('id').indexOf(arrExcludeTagPrefix[i])==0) {
+				for (var i = 0; i < arr_ExcludeElemPrefix_InCollapsing.length; i++) {
+					if (nextElem.length && nextElem.prop('id').indexOf(arr_ExcludeElemPrefix_InCollapsing[i])==0) {
 						ignoreFlag = true;
 						break;
 					};
 				};
 				if (!ignoreFlag) {
 					displayIt? nextElem.show(400):nextElem.hide(400);
+
+					
 					if (displayIt && !!nextElem.find('span.headerbtn')) {
 						nextElem.find('span.headerbtn').each(function(index, subIcon) {
 							$(subIcon).removeClass('glyphicon-plus');
@@ -55,9 +68,8 @@ function headerCollapsible() {
 			}
 		});
 	});    
+	if (!(typeof autoCollapse === "undefined")) headerCollapse(1);
 }
-
-/* Run this function to make the title auto collapse */
 function headerCollapse(level){
-	$(arrCollapsableTag[level]).find('span.headerbtn').click();
+	$(arr_Collapsible_Tag[level]).find('span.headerbtn').click();
 }

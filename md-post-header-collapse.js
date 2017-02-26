@@ -38,25 +38,25 @@ Example:
 							};
 						};
 						if (!ignoreFlag)
-							$(curHeader).prepend('<span class="glyphicon glyphicon-minus headerbtn" aria-hidden="true"></span>');
+							$(curHeader).prepend('<i class="fa fa-minus-square-o headerbtn" aria-hidden="true"></i>');
 					}
 					/**
 					* [curHeader: current header]
 					* [this: current span icon]
 					*/
-					$(curHeader).find('span.headerbtn.glyphicon').click(function(event) {
+					$(curHeader).find('i.headerbtn').click(function(event) {
 						var tagNameLevel = arr_Collapsible_Tag.indexOf($(curHeader).prop("tagName")); 
 						if ($(curHeader).hasClass('collapsed')) {
 							/*if this header already collapsed*/
 							var displayIt = true;
 							$(curHeader).removeClass('collapsed');
-							$(this).removeClass('glyphicon-plus');
-							$(this).addClass('glyphicon-minus');
+							$(this).removeClass('fa-plus-square-o');
+							$(this).addClass('fa-minus-square-o');
 						}else{
 							var displayIt = false;
 							$(curHeader).addClass('collapsed');
-							$(this).removeClass('glyphicon-minus');
-							$(this).addClass('glyphicon-plus');
+							$(this).removeClass('fa-minus-square-o');
+							$(this).addClass('fa-plus-square-o');
 						}
 
 						var nextElem = $(curHeader).next();
@@ -76,10 +76,10 @@ Example:
 							displayIt? nextElem.show(400):nextElem.hide(400);
 
 
-							if (displayIt && !!nextElem.find('span.headerbtn')) {
-								nextElem.find('span.headerbtn').each(function(index, subIcon) {
-									$(subIcon).removeClass('glyphicon-plus');
-									$(subIcon).addClass('glyphicon-minus');
+							if (displayIt && !!nextElem.find('i.headerbtn')) {
+								nextElem.find('i.headerbtn').each(function(index, subIcon) {
+									$(subIcon).removeClass('fa-plus-square-o');
+									$(subIcon).addClass('fa-minus-square-o');
 								});
 							};
 
@@ -94,7 +94,7 @@ Example:
 				if (!(typeof autoCollapse === "undefined")) headerCollapse(1);
 			}
 			function headerCollapse(level){
-				$(arr_Collapsible_Tag[level]).find('span.headerbtn').click();
+				$(arr_Collapsible_Tag[level]).find('i.headerbtn').click();
 			}
 			headerCollapsible();
 		}

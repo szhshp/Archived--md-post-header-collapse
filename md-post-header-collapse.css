@@ -5,9 +5,9 @@ span.headerbtn.glyphicon:hover {
 span.headerbtn.glyphicon {
     font-size: 60%;
     position: relative;
-    margin-left: -25px;
+    margin-left: -1rem;
     padding-right: 5px;
-    color: rgb(161, 161, 161);
+    color: darkgrey;
     -webkit-transition: opacity 1s;
     transition: opacity 1s;
     opacity: 0;
